@@ -15,7 +15,7 @@ public class SpringAmqpTest {
 
     @Test
     public void testSendMessage2SimpleQueue() {
-        String queueName = "simple.queue";
+        String queueName = "617";
         String message = "hello, spring amqp!";
         rabbitTemplate.convertAndSend(queueName, message);
     }
