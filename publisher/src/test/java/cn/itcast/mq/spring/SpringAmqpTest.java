@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.HashMap;
+
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class SpringAmqpTest {
@@ -22,7 +24,7 @@ public class SpringAmqpTest {
 
     @Test
     public void testSendMessage2WorkQueue() throws InterruptedException {
-        String queueName = "simple.queue";
+        String queueName = "617";
         String message = "hello, message__";
         for (int i = 1; i <= 50; i++) {
             rabbitTemplate.convertAndSend(queueName, message + i);
@@ -58,5 +60,13 @@ public class SpringAmqpTest {
         String message = "今天天气不错，我的心情好极了!";
         // 发送消息
         rabbitTemplate.convertAndSend(exchangeName, "china.weather", message);
+    }
+
+    @Test
+    public void testSendObjectQueue() {
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("name", "柳岩");
+        map.put("age", 18);
+        rabbitTemplate.convertAndSend("object.queue", map);
     }
 }

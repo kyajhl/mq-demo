@@ -11,19 +11,19 @@ import org.springframework.context.annotation.Configuration;
 public class FanoutConfig {
     // itcast.fanout
     @Bean
-    public FanoutExchange fanoutExchange(){
+    public FanoutExchange fanoutExchange() {
         return new FanoutExchange("itcast.fanout");
     }
 
     // fanout.queue1
     @Bean
-    public Queue fanoutQueue1(){
+    public Queue fanoutQueue1() {
         return new Queue("fanout.queue1");
     }
 
     // 绑定队列1到交换机
     @Bean
-    public Binding fanoutBinding1(Queue fanoutQueue1, FanoutExchange fanoutExchange){
+    public Binding fanoutBinding1(Queue fanoutQueue1, FanoutExchange fanoutExchange) {
         return BindingBuilder
                 .bind(fanoutQueue1)
                 .to(fanoutExchange);
@@ -31,20 +31,20 @@ public class FanoutConfig {
 
     // fanout.queue2
     @Bean
-    public Queue fanoutQueue2(){
+    public Queue fanoutQueue2() {
         return new Queue("fanout.queue2");
     }
 
     // 绑定队列2到交换机
     @Bean
-    public Binding fanoutBinding2(Queue fanoutQueue2, FanoutExchange fanoutExchange){
+    public Binding fanoutBinding2(Queue fanoutQueue2, FanoutExchange fanoutExchange) {
         return BindingBuilder
                 .bind(fanoutQueue2)
                 .to(fanoutExchange);
     }
 
     @Bean
-    public Queue objectQueue(){
+    public Queue objectQueue() {
         return new Queue("object.queue");
     }
 }
